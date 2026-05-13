@@ -133,7 +133,8 @@ def build_sample_summary(df: pd.DataFrame) -> pd.DataFrame:
 
 def build_missingness_summary(df: pd.DataFrame) -> pd.DataFrame:
     missing_pct = (df.isna().mean() * 100).round(2).sort_values(ascending=False)
-    summary = missing_pct.rename("missing_pct").reset_index(names="column_name")
+    summary = missing_pct.rename("missing_pct").reset_index()
+    summary.columns = ["column_name", "missing_pct"]
     return summary
 
 
